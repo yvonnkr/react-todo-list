@@ -52,6 +52,7 @@ class App extends Component {
               handleDelete={this.handleDelete}
               handleEdit={this.handleEdit}
             />
+            <i className='fas fa-book'></i>
           </div>
         </div>
       </div>
