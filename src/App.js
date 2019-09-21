@@ -8,18 +8,32 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //Visual Studio Code Github Setup
 class App extends Component {
   state = {
-    items: [{ id: 1, title: 'wake up' }, { id: 2, title: 'shopping' }],
+    items: [],
     id: uuid(),
     item: '',
     editItem: false
   };
 
   handleChange = e => {
-    console.log('handleChange');
+    this.setState({
+      item: e.target.value
+    });
   };
 
   handleSubmit = e => {
-    console.log('handleSubmit');
+    e.preventDefault();
+
+    if (this.state.item) {
+      const newItem = { id: this.state.id, title: this.state.item };
+      const updatedItems = [...this.state.items, newItem];
+
+      this.setState({
+        items: updatedItems,
+        id: uuid(),
+        item: '',
+        editItem: false
+      });
+    }
   };
 
   handleDelete = id => {
@@ -52,7 +66,6 @@ class App extends Component {
               handleDelete={this.handleDelete}
               handleEdit={this.handleEdit}
             />
-            <i className='fas fa-book'></i>
           </div>
         </div>
       </div>
